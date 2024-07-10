@@ -15,9 +15,27 @@ spring:
         format_sql: true
         use_sql_comments: true
         hbm2ddl:
-          auto: create
+          auto: update
         default_batch_fetch_size: 1000
   application:
     name: spring
 
+springdoc:
+  swagger-ui:
+    # swagger-ui 접근 경로. default 값은 /swagger-ui.html이다.
+      path: /swagger-custom-ui.html
+
+  # openAPI 접근 경로. default 값은 /v3/api-docs 이다.
+  api-docs:
+    path: /api-docs
+
+  # request media type 의 기본 값
+  default-consumes-media-type: application/json
+
+  # response media type 의 기본 값
+  default-produces-media-type: application/json
+
+  # 해당 패턴에 매칭되는 controller만 swagger-ui에 노출한다.
+#  paths-to-match:
+#    - /api/**
 

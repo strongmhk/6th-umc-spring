@@ -2,16 +2,19 @@ package umc.spring.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.MissionStatus;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class MemberMission extends BaseEntity {
 
     @Id
@@ -29,4 +32,13 @@ public class MemberMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+//    public void setCreatedAt() {
+//        this.createdAt = LocalDateTime.now();
+//    }
+
+    public MemberMission updateMissionStatus(MissionStatus status) {
+        this.status = status;
+        return this;
+    }
 }
